@@ -10,12 +10,11 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
 /**
- * Numerals app.
+ * Numerals app. Handles numbers in greek, roman, and decimal
+ * notation and carries out simple operations.
  *
  */
 public class Numerals {
-
-    
     
     public static int convertToDecimal(String numeral) {
         for (int i = 0; i < numeral.length(); i++) {
