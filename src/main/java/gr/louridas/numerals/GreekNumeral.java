@@ -14,14 +14,13 @@ public class GreekNumeral extends Numeral {
             new Hashtable<Character, Integer>();
          
     static {
-        String encoding = System.getProperty("file.encoding");
         ClassLoader classLoader = 
              Thread.currentThread().getContextClassLoader();
         InputStream greekFile = 
-            classLoader.getResourceAsStream("greek_" + encoding + ".txt");
+            classLoader.getResourceAsStream("greek_UTF-8.txt");
         try {
             BufferedReader in = 
-                new BufferedReader(new InputStreamReader(greekFile, encoding));
+                new BufferedReader(new InputStreamReader(greekFile, "UTF-8"));
             characters = in.readLine().toCharArray();
             for (int i = 0; i < characters.length; i++) {
                 int power = i / 9;

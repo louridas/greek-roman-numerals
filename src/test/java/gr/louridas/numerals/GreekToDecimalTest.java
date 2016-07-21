@@ -2,10 +2,10 @@ package gr.louridas.numerals;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,25 +20,24 @@ public class GreekToDecimalTest {
 
     @Parameters(name = "{index}: GreekToDecimal({0})={1}")
     public static Collection<Object[]> data() {
-        String encoding = System.getProperty("file.encoding");
         ClassLoader classLoader = 
             Thread.currentThread().getContextClassLoader();
-        String filename = "greek_to_decimal_" + encoding + ".txt";
-        String pathString = 
-            classLoader.getResource(filename).getFile();
+        String filename = "greek_to_decimal_UTF-8.txt";
+        InputStream stream = classLoader.getResourceAsStream(filename);
+        BufferedReader in;
         List<Object[]> testData = new LinkedList<Object[]>();
         try {
-            List<String> lines = Files.readAllLines(Paths.get(pathString), 
-                Charset.forName(encoding));
-            for (String line: lines) {
+            in = new BufferedReader(new InputStreamReader(stream, "UTF-8"));
+            String line = null;            
+            while ((line = in.readLine()) != null) {
                 String[] pair = line.split(" ");
-                testData.add(new Object[]{ 
+                testData.add(new Object[] { 
                     pair[0], Integer.parseInt(pair[1])
                 });
             }
-        } catch (IOException e) {
+        } catch (NumberFormatException | IOException e) {
             e.printStackTrace();
-        }
+        } 
         return testData;
     }
     

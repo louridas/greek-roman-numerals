@@ -1,12 +1,21 @@
 package gr.louridas.numerals;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Scanner;
+
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 
 /**
  * Numerals app.
  *
  */
 public class Numerals {
+
+    
     
     public static int convertToDecimal(String numeral) {
         for (int i = 0; i < numeral.length(); i++) {
@@ -20,8 +29,17 @@ public class Numerals {
         return Integer.parseInt(numeral);
     }
     
-    public static void main(String[] args ) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args )
+        throws UnsupportedEncodingException, ParseException {
+    	Options options = new Options();
+    	options.addOption("c", true, "encoding");
+    	CommandLineParser parser = new DefaultParser();
+    	CommandLine cmd = parser.parse( options, args);
+    	String encoding = "UTF-8";
+    	if (cmd.hasOption("c")) {
+    	   encoding = cmd.getOptionValue("c");
+    	}
+        Scanner sc = new Scanner(System.in, encoding);
         String line = null;
         System.out.print(">> " );
         while (!(line = sc.nextLine()).isEmpty()) {
