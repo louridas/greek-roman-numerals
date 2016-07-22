@@ -22,7 +22,15 @@ When the program starts you will get a prompt:
 ```
 >> 
 ```
-in which you can enter an arithmetic expression of the form `operand1 op operand2` or simply `operand`. The operands can be numbers in decimal, roman, or greek notation. The operand can be one of `+`, `-`, `*`, `/`. The result of the expression will be displayed in all three formats. To finish, enter an empty line.
+in which you can enter an arithmetic expression of the form `operand1 op operand2` or simply `operand`. The operands can be numbers in decimal, roman, or greek notation. The operand can be one of `+`, `-`, `*`, `/`. The result of the expression will be displayed in all three formats. To finish, enter an empty line. For example:
+```
+>> mγ + XXI
+924 mκδ CMXXIV
+```
+
+The Roman numerals are as described in the [Roman numerals Wikipedia article](https://en.wikipedia.org/wiki/Roman_numerals). The Greek numerals also follow the relevant [Green numerals Wikipedia article](https://en.wikipedia.org/wiki/Greek_numerals), with the following adaptations:
+* q is used for [koppa](https://en.wikipedia.org/wiki/Koppa_(letter))
+* m is used for [sampi](https://en.wikipedia.org/wiki/Sampi)
 
 ## Known limitations
 
