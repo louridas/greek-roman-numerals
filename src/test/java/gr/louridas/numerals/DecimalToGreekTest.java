@@ -51,6 +51,7 @@ public class DecimalToGreekTest {
 
     @Test
     public void testConversion() {
-        assertEquals(expected, GreekNumeral.decimalToGreek(input));
+        GreekNumeral greekNumeral = new GreekNumeral(input);
+        assertEquals(expected, greekNumeral.toString());
     }
 }

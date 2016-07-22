@@ -40,6 +40,7 @@ public class RomanToDecimalTest {
 
     @Test
     public void testConversion() {
-        assertEquals(expected, RomanNumeral.romanToDecimal(input)); 
+        RomanNumeral romanNumeral = new RomanNumeral(input);
+        assertEquals(expected, romanNumeral.getValue()); 
     }
 }

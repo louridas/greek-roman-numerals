@@ -46,7 +46,7 @@ public class GreekNumeral extends Numeral {
         setValue(value);
     }
     
-    static int greekToDecimal(String greek) {
+    private int greekToDecimal(String greek) {
         int total = 0;
         for (int i = 0; i < greek.length(); i++) {
             total += SYMBOLS.get(greek.charAt(i));
@@ -54,7 +54,7 @@ public class GreekNumeral extends Numeral {
         return total;
     }
     
-    static String decimalToGreek(int decimal) {
+    private String decimalToGreek(int decimal) {
    
         StringBuffer greekBuf = new StringBuffer();
         int greekIndex = 0; // start index in the characters array

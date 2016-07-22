@@ -34,12 +34,13 @@ public class DecimalToRomanTest {
     private String expected;
 
     public DecimalToRomanTest(int input, String expected) {
-	this.input = input;
-	this.expected = expected;
+        this.input = input;
+        this.expected = expected;
     }
 
     @Test
     public void testConversion() {
-	assertEquals(expected, RomanNumeral.decimalToRoman(input));
+        RomanNumeral romanNumeral = new RomanNumeral(input);
+        assertEquals(expected, romanNumeral.toString());
     }
 }

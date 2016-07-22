@@ -31,7 +31,7 @@ public class RomanNumeral extends Numeral {
         setValue(value);
     }
 
-    static int romanToDecimal(String roman) {
+    private int romanToDecimal(String roman) {
         int total_val = 0;
         int prev_val = 0;
         int cur_val = 0;
@@ -47,7 +47,7 @@ public class RomanNumeral extends Numeral {
         return total_val;
     }
 
-    static String decimalToRoman(int decimal) {
+    private String decimalToRoman(int decimal) {
 
         StringBuffer romanBuf = new StringBuffer();
         int romanIndex = 0; // start index in the characters array

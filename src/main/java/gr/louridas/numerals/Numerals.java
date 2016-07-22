@@ -10,22 +10,24 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
 /**
- * Numerals app. Handles numbers in greek, roman, and decimal
+ * Numerals app. Handles numbers in Greek, Roman, and decimal
  * notation and carries out simple operations.
  *
  */
 public class Numerals {
     
-    public static int convertToDecimal(String numeral) {
+    public static Numeral convertToNumeral(String numeral) {
         for (int i = 0; i < numeral.length(); i++) {
             if (RomanNumeral.SYMBOLS.containsKey(numeral.charAt(i))) {
-                return RomanNumeral.romanToDecimal(numeral);
+                RomanNumeral romanNumeral = new RomanNumeral(numeral);
+                return romanNumeral;
             }
             if (GreekNumeral.SYMBOLS.containsKey(numeral.charAt(i))) {
-                return GreekNumeral.greekToDecimal(numeral);
+                GreekNumeral greekNumeral = new GreekNumeral(numeral);
+                return greekNumeral;
             } 
         }
-        return Integer.parseInt(numeral);
+        return new Numeral(Integer.parseInt(numeral));
     }
     
     public static void main(String[] args )
@@ -43,28 +45,28 @@ public class Numerals {
         System.out.print(">> " );
         while (!(line = sc.nextLine()).isEmpty()) {
             String[] parts = line.split("\\s");
-            int firstOperand = convertToDecimal(parts[0]);
-            int result = firstOperand;
+            Numeral firstOperand = convertToNumeral(parts[0]);
+            Numeral result = firstOperand;
             if (parts.length > 1) {
-                int secondOperand = convertToDecimal(parts[2]);
+                Numeral secondOperand = convertToNumeral(parts[2]);
                 switch (parts[1]) {
                 case "+":
-                    result = firstOperand + secondOperand;
+                    result = firstOperand.add(secondOperand);
                     break;
                 case "-":
-                    result = firstOperand - secondOperand;
+                    result = firstOperand.subtract(secondOperand);
                     break;
                 case "*":
-                    result = firstOperand * secondOperand;
+                    result = firstOperand.multiply(secondOperand);
                     break;
                 case "/":
-                    result = firstOperand / secondOperand;
+                    result = firstOperand.divide(secondOperand);
                     break;
                 }
             }
-            System.out.format("%d %s %s\n", result, 
-                new GreekNumeral(result), 
-                new RomanNumeral(result));
+            System.out.format("%d %s %s\n", result.getValue(), 
+                new GreekNumeral(result.getValue()), 
+                new RomanNumeral(result.getValue()));
             System.out.print(">> " );
         }
         sc.close();
